@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <shelfSetEdit name="shelf_set_1">
+    <addMemberToolshelf name="Assignment" inPosition="0"/>
+  </shelfSetEdit>
+</shelfDocument>

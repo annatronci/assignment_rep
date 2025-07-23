@@ -1,3 +1,25 @@
+#*********************************************************************
+# content = scTouv_toolkit/qt_test_scTouv.py
+
+# version = 0.0.1
+# date = 2025-07-23
+
+# hou to = widget.show()
+# dependencies = hou, PySide2 or PySide6, QtWidgets, QtUiTools, QtCore, QtGui
+# todos = add more functionality, improve error handling, and enhance UI
+
+# license = None
+# author = Anna Tronci <annatronci.com>
+#*********************************************************************
+
+    """
+    scTouv_toolkit: A toolkit for exporting scanned geometry with UVs in Houdini.
+
+    Returns:
+        _type_: _description_
+    """
+    
+    
 import os
 import hou
 try :
@@ -116,18 +138,7 @@ def launch_tool():
             return path
         return ""
 
-    # Get toolkit path from environment
-
-    # base_path = os.environ.get("SC_TOUV_PATH", "")
-    # if not base_path:
-    #     print("SC_TOUV_PATH is not set.")
-    #     return
-
-    # ui_path = os.path.join(base_path, "scTouv.ui")
-    # image_path = os.path.join(base_path, "img", "SCtoUV.png")
-    # widget = load_ui(ui_path)
     
-    # Get toolkit path from absolute path of this script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     base_path = os.path.join(script_dir, "houdini_tool")
     ui_path = os.path.join(base_path, "scTouv.ui")

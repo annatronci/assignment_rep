@@ -15,8 +15,11 @@
     """
     scTouv_toolkit: A toolkit for exporting scanned geometry with UVs in Houdini.
 
-    Returns:
-        _type_: _description_
+    This module provides a Qt-based GUI for managing geometry export tasks,
+    including importing geometry files, checking UVs, and exporting to various formats
+    such as FBX, Alembic, and USD. It builds a network of nodes in Houdini to
+    facilitate these tasks and provides a user-friendly interface for artists and developers.
+    
     """
     
     

@@ -12,27 +12,29 @@
 # author = Anna Tronci <annatronci.com>
 #*********************************************************************
 
-    """
-    scTouv_toolkit: A toolkit for exporting scanned geometry with UVs in Houdini.
+"""
+scTouv_toolkit: A toolkit for exporting scanned geometry with UVs in Houdini.
 
-    This module provides a Qt-based GUI for managing geometry export tasks,
-    including importing geometry files, checking UVs, and exporting to various formats
-    such as FBX, Alembic, and USD. It builds a network of nodes in Houdini to
-    facilitate these tasks and provides a user-friendly interface for artists and developers.
-    
-    """
+This module provides a Qt-based GUI for managing geometry export tasks,
+including importing geometry files, checking UVs, and exporting to various formats
+such as FBX, Alembic, and USD. It builds a network of nodes in Houdini to
+facilitate these tasks and provides a user-friendly interface for artists and developers.
+
+"""
     
     
 import os
 import hou
-try :
+
+try:
     from PySide2 import QtWidgets, QtUiTools, QtCore, QtGui
-except :
+except:
     from PySide6 import QtWidgets, QtUiTools, QtCore, QtGui
 
 def build_network():
     obj = hou.node("/obj")
     geo = obj.node("geo1")
+ 
     if not geo:
         geo = obj.createNode("geo", "geo1", run_init_scripts=False)
     else:
@@ -89,10 +91,12 @@ def check_uvs():
     if not uv_node:
         print("uv_transfer1 not found.")
         return
+ 
     geo = uv_node.geometry()
     if not geo:
         print("No geometry found on uv_transfer1.")
         return
+ 
     if geo.findPrimAttrib("uv"):
         print("UVs are present.")
     else:
@@ -130,9 +134,9 @@ def launch_tool():
         return widget
 
     def import_geometry():
-        path = QtWidgets.QFileDialog.getOpenFileName(
-            None, "Select Geometry File", os.getcwd(), "Geometry Files (*.fbx *.abc *.usd *.obj);;All Files (*)"
-        )[0]
+        path = QtWidgets.QFileDialog.getOpenFileName(None, "Select Geometry File",
+                                                     os.getcwd(),
+                                                     "Geometry Files (*.fbx *.abc *.usd *.obj);;All Files (*)")[0]
         if path:
             geo = hou.node("/obj/geo1")
             file_node = geo.node("file1")

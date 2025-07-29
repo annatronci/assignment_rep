@@ -1,24 +1,20 @@
 import os
-import re 
-import sys 
-import shutil 
-import getpass
 import datetime 
 import subprocess
 
 from Qt import QtWidgets, QtGui, QtCore, QtCompat
 
-import libLog 
-import libData 
+import libLog  
 import libFunc
-import arNotice
 
 from arUtil import ArUtil
 from tank import Tank
 
+
 #***********************************************************************
 TITLE = "load"
 LOG = libLog.init(script=TITLE)
+
 
 #***********************************************************************
 class ArLoad(ArUtil):
@@ -64,12 +60,14 @@ class ArLoad(ArUtil):
         self.load_dir = self.data['project']['PATH'][self.wgLoad.lstScene.currentItem().text()]
         tmp_content = libFunc.get_file_list(self.load_dir)
         self.scene_steps = len(self.data['rules']['SCENES'][self.wgLoad.lstScene.currentItem().text()].split('/'))
+        
         if self.scene_steps < 5:
             self.wgLoad.lstAsset.hide()
         else:
             self.wgLoad.lstAsset.itemSelectionChanged.connect(self.change_lstAsset)
             self.wgLoad.lstAsset.show()
         self.wgLoad.lstSet.clear()
+        
         if tmp_content:
             self.wgLoad.lstSet.addItems(sorted(tmp_content))
             self.wgLoad.lstSet.setCurrentRow(0)
@@ -84,6 +82,7 @@ class ArLoad(ArUtil):
                 self.wgLoad.lstTask.setCurrentRow(0)
         else:
             self.wgLoad.lstAsset.clear()
+            
             if tmp_content:
                 self.wgLoad.lstAsset.addItems(sorted(tmp_content))
                 self.wgLoad.lstAsset.setCurrentRow(0)
@@ -92,7 +91,9 @@ class ArLoad(ArUtil):
         new_path = self.load_dir + '/' + self.wgLoad.lstSet.currentItem().text() \
                    + '/' + self.wgLoad.lstAsset.currentItem().text()
         tmp_content = libFunc.get_file_list(new_path)
+        
         self.wgLoad.lstTask.clear()
+        
         if tmp_content:
             self.wgLoad.lstTask.addItems(sorted(tmp_content))
             self.wgLoad.lstTask.setCurrentRow(0)

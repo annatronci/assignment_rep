@@ -27,28 +27,85 @@ START - long_sleeping
 """
 
 
+# import time
+
+
+# #*********************************************************************
+# # DECORATOR
+# def print_process(func):
+#     def wrapper(*args, **kwargs):
+#         func(arg)                  # main_function
+#     return wrapper
+
+
+# #*********************************************************************
+# # FUNC
+# @print_process
+# def short_sleeping(name):
+#     time.sleep(.1)
+#     print(name)
+
+# def mid_sleeping():
+#     time.sleep(2)
+
+# def long_sleeping():
+#     time.sleep(4)
+
+# short_sleeping("so sleepy")
+
 import time
 
 
-#*********************************************************************
+# *********************************************************************
 # DECORATOR
 def print_process(func):
     def wrapper(*args, **kwargs):
-        func(arg)                  # main_function
+        print(f"START ******* {func.__name__}")
+        start = time.time()
+
+        func(*args, **kwargs)
+
+        elapsed = time.time() - start
+        print(f"END ********* - {time.strftime('%H:%M:%S', time.gmtime(elapsed))}")
     return wrapper
 
 
-#*********************************************************************
+import time
+
+
+# *********************************************************************
+# DECORATOR
+def print_process(func):
+    def wrapper(*args, **kwargs):
+        print(f"START *******\n{func.__name__}")
+        start = time.time()
+
+        func(*args, **kwargs)
+
+        elapsed = time.time() - start
+        print(f"END *********\n- {time.strftime('%H:%M:%S', time.gmtime(elapsed))}")
+    return wrapper
+
+
+# *********************************************************************
 # FUNC
 @print_process
 def short_sleeping(name):
     time.sleep(.1)
     print(name)
 
+@print_process
 def mid_sleeping():
     time.sleep(2)
 
+@print_process
 def long_sleeping():
     time.sleep(4)
 
+
+# *********************************************************************
+# RUN
 short_sleeping("so sleepy")
+mid_sleeping()
+long_sleeping()
+

@@ -1,0 +1,7 @@
+{
+    "UI_FILENAME": "scTouv.ui",
+    "IMAGE_FILENAME": "SCtoUV.png",
+    "SUPPORTED_FORMATS": ["fbx", "abc", "usd"],
+    "DEFAULT_EXPORT_PATH": "D:/ATS-Drive/Exports",
+    "DEFAULT_QUAD_COUNT": 5000
+}

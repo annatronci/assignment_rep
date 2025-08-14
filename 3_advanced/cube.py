@@ -28,75 +28,68 @@ CUBE CLASS
 
 """
 
-from abc import ABC, abstractmethod
-
+def print_value_edits(func):
+    def decorator(*args, **kwargs):
+        output = func(*args, **kwargs)
+        transform_edit_result = 'Edited. {} : [ {}, {}, {}]'
+        print(transform_edit_result.format(
+            output[0], output[1], output[2], output[3]))
+        
+    return decorator
 
 class Object:
     def __init__(self, name):
         self.name = name
-        self.translation = [0.0, 0.0, 0.0]
-        self.rotation = [0.0, 0.0, 0.0]
-        self.scaling = [1.0, 1.0, 1.0]
+        self._translate = [0, 0, 0]
+        self._rotate = [0, 0, 0]
+        self._scale = [1, 1, 1]
 
+    @print_value_edits
     def translate(self, x, y, z):
-        self.translation = [x, y, z]
-        print(f"[{self.name}] Translate set to {self.translation}")
+        self.translate = [x, y, z]
+        return ['translate', x, y, z]
 
+    @print_value_edits
     def rotate(self, x, y, z):
-        self.rotation = [x, y, z]
-        print(f"[{self.name}] Rotate set to {self.rotation}")
+        self.rotate = [x, y, z]
+        return ['rotate', x, y, z]
 
+    @print_value_edits
     def scale(self, x, y, z):
-        self.scaling = [x, y, z]
-        print(f"[{self.name}] Scale set to {self.scaling}")
-
-
-
-class Cube(Object, ABC):
-    def color(self, R, G, B):
-        pass 
-
-
-class MyCube(Cube):
-    def __init__(self, name, R=1.0, G=1.0, B=1.0):
-        super().__init__(name)
-        self.color(R, G, B)
-
-    def color(self, R, G, B):
-        self.color_value = [R, G, B]
-        print(f"[{self.name}] Color set to {self.color_value}")
-
-    def print_status(self):
-        print(f"\n=== {self.name} STATUS ===")
-        print(f"Translate: {self.translation}")
-        print(f"Rotate: {self.rotation}")
-        print(f"Scale: {self.scaling}")
-        print(f"Color: {self.color_value}")
+        self.scale = [x, y, z]
+        return ['scale', x, y, z]
 
     def update_transform(self, ttype, value):
-        getattr(self, ttype)(*value)  # senza if
+        transforms = {
+            'translate': self.translate,
+            'rotate': self.rotate,
+            'scale': self.scale
+        }
+        transforms[ttype](value[0], value[1], value[2])
 
 
 
-if __name__ == "__main__":
-    cube1 = MyCube("Cube 1", 1.0, 0.0, 0.0)
-    cube2 = MyCube("Cube 2", 0.0, 1.0, 0.0)
-    cube3 = MyCube("Cube 3", 0.0, 0.0, 1.0)
+class Cube(Object):
+    color_rgb = [0, 0, 0]
 
-    
-    cube1.translate(1, 2, 3)
-    cube2.rotate(45, 0, 90)
-    cube3.scale(2, 2, 2)
+    @print_value_edits
+    def color(self, r, g, b):
+        self.color_rgb[0] = r
+        self.color_rgb[1] = g
+        self.color_rgb[2] = b
+        return ['color', r, g, b]
 
+    # create three instances
 
-    cube1.update_transform("translate", [10, 10, 10])
-    cube2.update_transform("rotate", [0, 45, 0])
-    cube3.update_transform("scale", [0.5, 0.5, 0.5])
+the_first_instance = Cube('myCube1')
+the_second_instance = Cube('myCube2')
+the_third_instance = Cube('myCube3')
 
-    
-    cube1.print_status()
-    cube2.print_status()
-    cube3.print_status()
+# functionality test
+print('Color')
+print(the_first_instance.color(1, 2, 3))
+the_second_instance.rotate(3, 2, 1)
+the_third_instance.update_transform('scale', [12, 12, 12])
 
     
 

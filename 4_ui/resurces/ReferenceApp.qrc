@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="logo">
+    <file>AT_SERVER_alpha.png</file>
+  </qresource>
+</RCC>

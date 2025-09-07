@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="scTouv">
+    <file>houdini_tool/img/quad_remesh.jpg</file>
+    <file>houdini_tool/img/SCtoUV.png</file>
+    <file>houdini_tool/img/shelfIcon.png</file>
+  </qresource>
+</RCC>

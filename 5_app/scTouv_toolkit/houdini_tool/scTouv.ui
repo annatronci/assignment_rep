@@ -7,18 +7,21 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>287</height>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Houdini</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
    <property name="sizeConstraint">
-    <enum>QLayout::SetFixedSize</enum>
+    <enum>QLayout::SizeConstraint::SetFixedSize</enum>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -38,7 +41,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="scTouv.qrc">:/first/img/SCtoUV.png</pixmap>
+      <pixmap resource="../scTouc.qrc">:/scTouv/houdini_tool/img/SCtoUV.png</pixmap>
      </property>
     </widget>
    </item>
@@ -57,29 +60,7 @@
       <number>6</number>
      </property>
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="sizeIncrement">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Asset Manager</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -87,60 +68,114 @@
         <number>20</number>
        </property>
        <item>
-        <widget class="QLineEdit" name="edt_asset">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>ASSET</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="edtPath">
          <property name="placeholderText">
           <string>geo path</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_asset">
+        <widget class="QPushButton" name="btnImport">
          <property name="toolTip">
           <string>import geo to reto</string>
          </property>
          <property name="text">
-          <string>Import</string>
+          <string>Import geo</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
-       <property name="sizeIncrement">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>EXPORT</string>
-       </property>
+      <widget class="QWidget" name="verticalWidget" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="lblQuad">
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/quad_remesh.jpg</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Quad Total Count</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignRight">
+         <widget class="QLineEdit" name="editQuad"/>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <property name="leftMargin">
         <number>0</number>
        </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
        <item>
-        <widget class="QPushButton" name="btn_add">
+        <widget class="QLabel" name="lblExport">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>10</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="text">
-          <string>FBX</string>
+          <string>EXPORT</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_add_2">
+        <widget class="QPushButton" name="btnUsd">
+         <property name="text">
+          <string>USD</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAbc">
          <property name="text">
           <string>ABC</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_add_3">
+        <widget class="QPushButton" name="btnFbx">
          <property name="text">
-          <string>USD</string>
+          <string>FBX</string>
          </property>
         </widget>
        </item>
@@ -151,7 +186,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="scTouv.qrc"/>
+  <include location="../scTouc.qrc"/>
  </resources>
  <connections/>
 </ui>

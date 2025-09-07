@@ -1,0 +1,7 @@
+{
+    "UI_FILENAME": "houdini_tool/scTouv.ui",
+    "IMAGE_FILENAME": "houdini_tool/img/SCtoUV.png",
+    "SUPPORTED_FORMATS": ["fbx", "abc", "usd"],
+    "DEFAULT_EXPORT_PATH": "/Volumes/ATS_QSYNC",
+    "DEFAULT_QUAD_COUNT": 5000
+}

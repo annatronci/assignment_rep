@@ -5,18 +5,36 @@
   </toolshelf>
 
   <tool name="scTouv0" label="SC to UV" icon="SCtoUV.png">
-    <helpText><![CDATA[Retopo + UV backing on Scan]]></helpText>
-    <helpURL>https://www.linkedin.com/in/anna-tronci-a4390289/</helpURL>
+    <helpText><![CDATA[Retopo + UV baking on Scan]]></helpText>
     <script scriptType="python"><![CDATA[
-import os, sys
+import sys
+import os
+import hou
 
-toolkit_path = os.environ.get("SC_TOUV_PATH")
-if toolkit_path and toolkit_path not in sys.path:
-    sys.path.append(toolkit_path)
+# Path assoluto alla cartella houdini_tool (dove sta scTouv.py)
+tool_dir = "/Volumes/ATS_QSYNC/assignment_rep/5_app/scTouv_toolkit/houdini_tool"
+tool_dir = os.path.normpath(tool_dir)
 
-import qt_test_scTouv
-qt_test_scTouv.launch_tool()
-]]></script>
+# Aggiungi la cartella al sys.path
+if tool_dir not in sys.path:
+    sys.path.insert(0, tool_dir)
+
+# Importa il modulo
+try:
+    import scTouv
+except ModuleNotFoundError:
+    hou.ui.displayMessage(f"Modulo scTouv non trovato in: {tool_dir}")
+    raise
+
+# Lancia il tool tramite l'entry point della shelf
+try:
+    scTouv.launch_tool()
+except Exception as e:
+    hou.ui.displayMessage(f"Errore nel lancio di scTouv: {e}")
+    raise
+    ]]></script>
   </tool>
 </shelfDocument>
+
+
 
